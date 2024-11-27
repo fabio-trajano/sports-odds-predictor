@@ -1,6 +1,7 @@
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
 import joblib
 
 def train_model(features, target):
@@ -22,12 +23,7 @@ def train_model(features, target):
     # Initialize and train the model
     model = RandomForestRegressor(random_state=42)
     model.fit(X_train, y_train)
-
-    # Evaluate the model
-    predictions = model.predict(X_test)
-    mae = mean_absolute_error(y_test, predictions)
-    print(f"Model trained. Mean Absolute Error on test set: {mae:.2f}")
-
+    
     return model
 
 def evaluate_model(model, X_test, y_test):
