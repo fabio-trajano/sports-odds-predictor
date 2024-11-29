@@ -45,6 +45,7 @@ class Predictor:
 
         return data
 
+
     def predict(self, input_data):
         """
         Run the prediction using the trained model.
