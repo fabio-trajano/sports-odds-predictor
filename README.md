@@ -57,45 +57,43 @@ git lfs install
 
 ### Data Preprocessing
 ```bash
-PYTHONPATH=$(pwd) python3 scripts/run_preprocessing.py
+python scripts/run_preprocessing.py
 ```
 
 ### Model Training
 ```bash
-PYTHONPATH=$(pwd) python3 scripts/train_model.py
+python scripts/train_model.py
 ```
 
 ### Making Predictions
 ```bash
-PYTHONPATH=$(pwd) python3 scripts/make_predictions.py
+python scripts/make_predictions.py
+```
+- ### Or make predictions via Django API:
+
+#### 1. Start the Django Server
+```bash
+cd api
+python manage.py runserver
+```
+
+#### 2. Make a POST request to http://127.0.0.1:8000/api/predict/ with the following JSON input:
+```bash
+{
+    "home_team_rank": 2,
+    "away_team_rank": 3,
+    "home_recent_wins": 5,
+    "away_recent_wins": 4,
+    "home_goals_scored_avg": 2.7,
+    "away_goals_scored_avg": 2.5
+}
 ```
 
 ### Visualization
 ```bash
-PYTHONPATH=$(pwd) python3 scripts/visualize_results.py
+python scripts/visualize_results.py
 ```
 
-## Project Structure
-```
-sports-odds-predictor/
-│
-├── data/               # Raw and processed data
-├── models/             # Trained model files
-├── scripts/            # Executable scripts
-│   ├── run_preprocessing.py
-│   ├── train_model.py
-│   ├── make_predictions.py
-│   └── visualize_results.py
-│
-├── src/                # Source code
-│   ├── preprocessing.py
-│   ├── model.py
-│   ├── prediction.py
-│   └── visualization.py
-│
-├── requirements.txt
-└── README.md
-```
 
 
 ## License
