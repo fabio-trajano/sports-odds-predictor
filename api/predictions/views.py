@@ -5,6 +5,35 @@ from .serializer import PredictionInputSerializer
 import joblib
 import os
 
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.decorators import api_view
+
+@api_view(["GET"])
+def api_home(request):
+    """
+    Home page for the Sports Odds Predictor API.
+
+    Returns a list of available endpoints and their descriptions.
+    """
+    data = {
+        "message": "Welcome to the Sports Odds Predictor API!",
+        "endpoints": {
+            "/api/predict/random_forest/": "Predict odds using the Random Forest model (POST).",
+            "/api/predict/gradient_boosting/": "Predict odds using the Gradient Boosting model (POST).",
+        },
+        "example_input": {
+            "home_team_rank": 2,
+            "away_team_rank": 3,
+            "home_recent_wins": 5,
+            "away_recent_wins": 4,
+            "home_goals_scored_avg": 2.7,
+            "away_goals_scored_avg": 2.5
+        },
+    }
+    return Response(data)
+
+
 # Paths to models
 RF_MODEL_PATH = os.path.join(os.path.dirname(__file__), "../../models/random_forest_model.pkl")
 GB_MODEL_PATH = os.path.join(os.path.dirname(__file__), "../../models/gradient_boosting_model.pkl")
