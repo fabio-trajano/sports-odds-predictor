@@ -72,6 +72,7 @@ python scripts/run_preprocessing.py
 ```bash
 python scripts/train_model.py
 ```
+- after running this the models should be available in the `models/` directory.
 
 ### Making Predictions
 ```bash
@@ -102,7 +103,13 @@ python manage.py runserver
 - ### Gradient Boosting Model
   -  URL: `http://127.0.0.1:8000/api/predict/gradient_boosting/`
 
-### Visualization
+### Get Model Metrics
+
+Retrieve performance metrics for both models (Random Forest and Gradient Boosting):
+
+- **Endpoint:** `/api/metrics/`
+
+### Data vizualization script:
 ```bash
 python scripts/visualize_results.py
 ```
